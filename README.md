@@ -14,4 +14,5 @@
 3. Cambiar las variables de entorno
 4. Levantar base de datos
 ```docker-compose up -d```
-5. Levantar: ```npm run start:dev```
+5. Ejecutar SEED: ```http://localhost:3000/api/seed```
+6. Levantar: ```npm run start:dev```
