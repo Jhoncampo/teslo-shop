@@ -7,9 +7,7 @@ import { SeedModule } from './seed/seed.module';
 import { FilesModule } from './files/files.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    load: [] // Todo: Pendiente por cofigurar las variables de entorno
-  }), TypeOrmModule.forRoot({
+  imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
     type: "postgres",
     host: process.env.DB_HOST,
     port: +process.env.DB_PORT!,
