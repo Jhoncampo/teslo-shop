@@ -9,9 +9,9 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { PaginationDto } from 'src/common/dtos/pagination.dto';
 import { validate as isUUID } from 'uuid';
 import { ProductImage, Product } from './entities';
+import { PaginationDto } from '../common/dtos/pagination.dto';
 
 @Injectable()
 export class ProductsService {
