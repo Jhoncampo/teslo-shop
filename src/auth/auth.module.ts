@@ -7,14 +7,16 @@ import { User } from './entities/user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtStrategy } from './strategies/jwt.strategy';
 //import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   imports: [
     TypeOrmModule.forFeature([User]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
+    ConfigModule,
 
     // El modo async sirve para cargar servicio externos, como lo son otros modulos o servicios
     JwtModule.registerAsync({
@@ -32,6 +34,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     //   signOptions: { expiresIn: '2h' },
     // }),
   ],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, JwtStrategy, PassportModule, JwtModule],
 })
 export class AuthModule {}
