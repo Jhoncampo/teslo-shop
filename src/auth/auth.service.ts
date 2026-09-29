@@ -58,6 +58,14 @@ export class AuthService {
     }
   }
 
+   checkAuthStatus(user: User){
+    try {
+      console.log(user)
+    } catch (error) {
+      this.handleDBErrors(error);
+    }
+  }
+
   private getJwtToken(payload: JwtPayload) {
     const token = this.jwtService.sign(payload)
     return token
