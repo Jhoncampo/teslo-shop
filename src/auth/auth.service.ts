@@ -18,8 +18,8 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepositoy: Repository<User>,
-    private readonly jwtService: JwtService
-  ) { }
+    private readonly jwtService: JwtService,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -58,17 +58,17 @@ export class AuthService {
     }
   }
 
-   checkAuthStatus(user: User){
+  checkAuthStatus(user: User) {
     try {
-      console.log(user)
+      return { ...user, token: this.getJwtToken({ id: user.id }) };
     } catch (error) {
       this.handleDBErrors(error);
     }
   }
 
   private getJwtToken(payload: JwtPayload) {
-    const token = this.jwtService.sign(payload)
-    return token
+    const token = this.jwtService.sign(payload);
+    return token;
   }
 
   private handleDBErrors(error: any): never {

@@ -24,7 +24,7 @@ export class AuthController {
   }
 
   @Get("check-auth-status")
-  @UseGuards(AuthGuard())
+  @Auth()
   checkAuthStatus(@GetUser() user: User){
     return this.authService.checkAuthStatus(user)
   }
